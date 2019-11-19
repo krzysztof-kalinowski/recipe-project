@@ -72,7 +72,6 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.\n");
 
         Notes guacNotes = new Notes();
-        guacNotes.setRecipe(guacamole);
         guacNotes.setRecipeNotes("For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
                 "\n" +
                 "Feel free to experiment! One classic Mexican guacamole has pomegranate seeds and chunks of peaches in it (a Diana Kennedy favorite). Try guacamole with added pineapple, mango, or strawberries (see our Strawberry Guacamole).\n" +
@@ -84,13 +83,13 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "For a deviled egg version with guacamole, try our Guacamole Deviled Eggs!");
         guacamole.setNotes(guacNotes);
 
-        guacamole.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), each, guacamole));
-        guacamole.getIngredients().add(new Ingredient("Kosher salt", new BigDecimal(".5"), teaSpoon, guacamole));
-        guacamole.getIngredients().add(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(".5"), tableSpoon, guacamole));
-        guacamole.getIngredients().add(new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tableSpoon, guacamole));
-        guacamole.getIngredients().add(new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), each, guacamole));
-        guacamole.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(1), dash, guacamole));
-        guacamole.getIngredients().add(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each, guacamole));
+        guacamole.addIngredient(new Ingredient("ripe avocados", new BigDecimal(2), each));
+        guacamole.addIngredient(new Ingredient("Kosher salt", new BigDecimal(".5"), teaSpoon));
+        guacamole.addIngredient(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(".5"), tableSpoon));
+        guacamole.addIngredient(new Ingredient("minced red onion or thinly sliced green onion", new BigDecimal(2), tableSpoon));
+        guacamole.addIngredient(new Ingredient("serrano chiles, stems and seeds removed, minced", new BigDecimal(2), each));
+        guacamole.addIngredient(new Ingredient("freshly grated black pepper", new BigDecimal(1), dash));
+        guacamole.addIngredient(new Ingredient("ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each));
         //TODO wiecej skladników
 
         guacamole.getCategories().add(american);
@@ -121,19 +120,18 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "5 Assemble the tacos: Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.");
 
         Notes chickenNotes = new Notes();
-        chickenNotes.setRecipe(chicken);
         chickenNotes.setRecipeNotes("Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)");
 
         chicken.setNotes(chickenNotes);
-        chicken.getIngredients().add(new Ingredient("ancho chili powder", new BigDecimal(2), tableSpoon, chicken));
-        chicken.getIngredients().add(new Ingredient("dried oregano", new BigDecimal(1), tableSpoon, chicken));
-        chicken.getIngredients().add(new Ingredient("dried cumin", new BigDecimal(1), tableSpoon, chicken));
-        chicken.getIngredients().add(new Ingredient("sugar", new BigDecimal(1), tableSpoon, chicken));
-        chicken.getIngredients().add(new Ingredient("salt", new BigDecimal(.5), tableSpoon, chicken));
-        chicken.getIngredients().add(new Ingredient("clove garlic, finely chopped", new BigDecimal(1), each, chicken));
-        chicken.getIngredients().add(new Ingredient("finely grated orange zest", new BigDecimal(1), tableSpoon, chicken));
-        chicken.getIngredients().add(new Ingredient("olive oil", new BigDecimal(2), tableSpoon, chicken));
-        chicken.getIngredients().add(new Ingredient("skinless, boneless chicken thighs", new BigDecimal(6), each, chicken));
+        chicken.addIngredient(new Ingredient("ancho chili powder", new BigDecimal(2), tableSpoon));
+        chicken.addIngredient(new Ingredient("dried oregano", new BigDecimal(1), tableSpoon));
+        chicken.addIngredient(new Ingredient("dried cumin", new BigDecimal(1), tableSpoon));
+        chicken.addIngredient(new Ingredient("sugar", new BigDecimal(1), tableSpoon));
+        chicken.addIngredient(new Ingredient("salt", new BigDecimal(.5), tableSpoon));
+        chicken.addIngredient(new Ingredient("clove garlic, finely chopped", new BigDecimal(1), each));
+        chicken.addIngredient(new Ingredient("finely grated orange zest", new BigDecimal(1), tableSpoon));
+        chicken.addIngredient(new Ingredient("olive oil", new BigDecimal(2), tableSpoon));
+        chicken.addIngredient(new Ingredient("skinless, boneless chicken thighs", new BigDecimal(6), each));
 
         chicken.getCategories().add(american);
         chicken.getCategories().add(mexican);
