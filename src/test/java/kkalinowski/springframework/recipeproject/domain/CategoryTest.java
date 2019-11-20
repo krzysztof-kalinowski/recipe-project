@@ -30,6 +30,6 @@ class CategoryTest {
 
     @Test
     void getRecipes() {
-        
+
     }
 }
