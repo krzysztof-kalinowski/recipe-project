@@ -4,6 +4,7 @@ import kkalinowski.springframework.recipeproject.domain.*;
 import kkalinowski.springframework.recipeproject.repositories.CategoryRepository;
 import kkalinowski.springframework.recipeproject.repositories.RecipeRepository;
 import kkalinowski.springframework.recipeproject.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ import java.util.Optional;
 /**
  * Created by Krzysztof Kalinowski on 18/11/2019.
  */
-
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -96,6 +97,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacamole.getCategories().add(mexican);
 
         recipes.add(guacamole);
+        log.debug("Bootstrap: Guacamole recipe added");
 
         //------------------------------Spicy Grilled Chicken Tacos
         Recipe chicken = new Recipe();
@@ -137,6 +139,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         chicken.getCategories().add(mexican);
 
         recipes.add(chicken);
+        log.debug("Bootstrap: chicken recipe added");
 
         return recipes;
     }
