@@ -18,9 +18,14 @@ class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeService recipeService;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
+
+        recipeService = new RecipeServiceImpl(recipeRepository);
     }
 
     @Test
@@ -29,7 +34,7 @@ class RecipeServiceImplTest {
         HashSet recipesData = new HashSet();
         recipesData.add(recipe);
 
-        when(recipeRepository.findAll()).thenReturn(recipesData);
+        when(recipeService.getRecipes()).thenReturn(recipesData);
 
         Set<Recipe> recipes = new HashSet<>();
         recipeRepository.findAll().forEach(recipes::add);
