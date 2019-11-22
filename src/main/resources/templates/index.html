@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Recipe home</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <meta charset="UTF-8"/>
+    <title>Recipe Home</title>
 
-     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+
+    <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.0.0.slim.min.js"
+            th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+    <script crossorigin="anonymous" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+
 </head>
 <body>
-    <div class="container-fluid" style="margin-top: 20px">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-primary">
-
-                    <div class="panel-heading">
-                        <h1 class="panel-title">My Recipes</h1>
-                    </div>
-                    <div class="panel-body">
-                        <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
-                            <table class="table table-hover">
-                                <thead class="thread-inverse">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <!--<tr th:remove="all">
-                                    <td th:text="${recipe.id}">12</td>
-                                    <td th:text="${recipe.description}">Tasty 1</td>
-                                </tr>
-                                <tr th:remove="all">
-                                    <td th:text="${recipe.id}">123</td>
-                                    <td th:text="${recipe.description}">Tasty 2</td>
-                                </tr>-->
-                                <tr th:each="recipe : ${recipes}">
-                                    <td th:text="${recipe.id}">1234</td>
-                                    <td th:text="${recipe.description}">Tasty 3</td>
-                                </tr>
-                            </table>
-                        </div>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-lg-6 offset-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-header">
+                    <h1 class="card-title">My Recipes!</h1>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tr th:remove="all">
+                                <td th:text="${recipe.id}">123</td>
+                                <td th:text="${recipe.description}">Tasty Goodnees 1</td>
+                            </tr>
+                            <tr th:remove="all">
+                                <td th:text="${recipe.id}">12333</td>
+                                <td th:text="${recipe.description}">Tasty Goodnees 2</td>
+                            </tr>
+                            <tr th:each="recipe : ${recipes}">
+                                <td th:text="${recipe.id}">334</td>
+                                <td th:text="${recipe.description}">Tasty Goodnees 3</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
