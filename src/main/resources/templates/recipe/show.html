@@ -1,10 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Recipe Home</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+
+    <script crossorigin="anonymous" src="https://code.jquery.com/jquery-3.0.0.slim.min.js"
+            th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+    <script crossorigin="anonymous" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-lg-6 offset-md-3">
+            <div class="card text-black bg-primary">
+                <div class="card-header ">
+                    <h3 class="card-title" th:text="${recipe.description}">Recipe description here</h3>
+                </div>
+                <div class="card-body bg-white">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>Categories:</h5>
+                        </div>
+                        <div class="col-md-9">
+                            <ul>
+                                <li th:remove="all">cat one</li>
+                                <li th:remove="all">cat two</li>
+                                <li th:each="categry : ${recipe.categories}" th:text="${categry.description}">cat three</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>Prep Time:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 th:text="${recipe.prepTime}">30 min</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Difficulty:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 th:text="${recipe.difficulty}">Easy</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>Cooktime:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 th:text="${recipe.cookTime}">30 min</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>Servings:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 th:text="${recipe.servings}">4</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>Source:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5 th:text="${recipe.source}" >30 min</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <h5>URL:</h5>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${recipe.url}">http://www.example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="card text-black bg-primary">
+                <div class="card-header ">
+                    <h3 class="card-title">Ingredients</h3>
+                </div>
+                <div class="card-body bg-white">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul th:each="ingredient : ${recipe.ingredients}">
+                                <li th:remove="all">1 Cup of milk</li>
+                                <li th:remove="all">1 Teaspoon of Chocolate</li>
+                                <li th:text="${ingredient.amount}+' '+${ingredient.uom.description}+' - '+${ingredient.desctiption}">1 Teaspoon of Sugar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-black bg-primary">
+                <div class="card-header ">
+                    <h3 class="card-title">Directions</h3>
+                </div>
+                <div class="card-body bg-white">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget odio eget lacus cursus ultrices. Cras ultrices lacus massa, ac congue ipsum mattis in. Sed dictum felis quis augue semper, id venenatis neque aliquet. Donec euismod fringilla leo, eu facilisis libero scelerisque at. Nam tincidunt elit condimentum eros aliquet pretium. In sodales magna at euismod dictum. Ut quis malesuada turpis.
+
+                                Integer et odio blandit magna ultricies consequat porttitor id orci. Maecenas ac varius lorem. Donec sed lorem pharetra, molestie tortor vitae, blandit lacus. Donec et orci tellus. Proin sit amet semper odio. Donec vehicula orci lacus, nec fringilla magna scelerisque nec. Nulla malesuada, tellus non lacinia fermentum, tellus augue fringilla orci, ac condimentum sapien risus a risus. Phasellus a est vitae lacus egestas placerat. Donec sodales lectus et faucibus iaculis. Phasellus a tristique mauris. Nam congue orci sit amet odio faucibus ultricies eget at neque. Mauris sagittis lacus quis est iaculis, efficitur lacinia nulla dictum. In nec convallis ante, vel fermentum erat. Sed vehicula venenatis dolor, non porta felis ultricies eu.
+
+                                Duis lobortis vestibulum turpis quis tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin et arcu quam. Maecenas nulla est, varius et euismod id, suscipit quis est. Duis sed leo et quam iaculis ultricies vel sit amet sapien. Donec imperdiet viverra tortor, non tempor felis posuere non. Proin condimentum massa libero, sed euismod nibh dapibus id. Aenean tincidunt consequat leo, non aliquam lacus consectetur et. Nulla facilisi. Aenean scelerisque eros id massa iaculis, quis elementum purus blandit. Sed vitae mi lacus. Integer nisi enim, iaculis aliquet ante ac, egestas commodo velit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-black bg-primary">
+                <div class="card-header ">
+                    <h3 class="card-title">Notes</h3>
+                </div>
+                <div class="card-body bg-white">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p th:text="${recipe.notes.recipeNotes}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget odio eget lacus cursus ultrices. Cras ultrices lacus massa, ac congue ipsum mattis in. Sed dictum felis quis augue semper, id venenatis neque aliquet. Donec euismod fringilla leo, eu facilisis libero scelerisque at. Nam tincidunt elit condimentum eros aliquet pretium. In sodales magna at euismod dictum. Ut quis malesuada turpis.
+
+                                Integer et odio blandit magna ultricies consequat porttitor id orci. Maecenas ac varius lorem. Donec sed lorem pharetra, molestie tortor vitae, blandit lacus. Donec et orci tellus. Proin sit amet semper odio. Donec vehicula orci lacus, nec fringilla magna scelerisque nec. Nulla malesuada, tellus non lacinia fermentum, tellus augue fringilla orci, ac condimentum sapien risus a risus. Phasellus a est vitae lacus egestas placerat. Donec sodales lectus et faucibus iaculis. Phasellus a tristique mauris. Nam congue orci sit amet odio faucibus ultricies eget at neque. Mauris sagittis lacus quis est iaculis, efficitur lacinia nulla dictum. In nec convallis ante, vel fermentum erat. Sed vehicula venenatis dolor, non porta felis ultricies eu.
+
+                                Duis lobortis vestibulum turpis quis tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin et arcu quam. Maecenas nulla est, varius et euismod id, suscipit quis est. Duis sed leo et quam iaculis ultricies vel sit amet sapien. Donec imperdiet viverra tortor, non tempor felis posuere non. Proin condimentum massa libero, sed euismod nibh dapibus id. Aenean tincidunt consequat leo, non aliquam lacus consectetur et. Nulla facilisi. Aenean scelerisque eros id massa iaculis, quis elementum purus blandit. Sed vitae mi lacus. Integer nisi enim, iaculis aliquet ante ac, egestas commodo velit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
 </body>
 </html>
