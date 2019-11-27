@@ -60,10 +60,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacamole.setPrepTime(10);
         guacamole.setCookTime(0);
         guacamole.setServings(4);
-        guacamole.setSource("Some web page");
+        guacamole.setSource("Some recipe source");
         guacamole.setUrl("http://some.web.page.pl");
         guacamole.setDifficulty(Difficulty.EASY);
-        guacamole.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
+        guacamole.setDirections("Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon. (See How to Cut and Peel an Avocado.) Place in a bowl.\n" +
                 "\n" +
                 "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)\n" +
                 "\n" +
@@ -110,10 +110,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         chicken.setPrepTime(20);
         chicken.setCookTime(15);
         chicken.setServings(2);
-        chicken.setSource("Another web page");
+        chicken.setSource("Another recipe source");
         chicken.setUrl("http://another.web.page.com");
         chicken.setDifficulty(Difficulty.MODERATE);
-        chicken.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\n" +
+        chicken.setDirections("Prepare a gas or charcoal grill for medium-high, direct heat.\n" +
                 "\n" +
                 "2 Make the marinade and coat the chicken: In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\n" +
                 "\n" +
