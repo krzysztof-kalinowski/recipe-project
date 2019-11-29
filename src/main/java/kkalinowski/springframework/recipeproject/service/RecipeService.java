@@ -1,5 +1,6 @@
 package kkalinowski.springframework.recipeproject.service;
 
+import kkalinowski.springframework.recipeproject.commands.RecipeCommand;
 import kkalinowski.springframework.recipeproject.domain.Recipe;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +16,6 @@ public interface RecipeService {
     Set<Recipe> getRecipes();
 
     Recipe findById(Long id);
+
+    RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand);
 }

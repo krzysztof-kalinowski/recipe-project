@@ -1,5 +1,7 @@
 package kkalinowski.springframework.recipeproject.service;
 
+import kkalinowski.springframework.recipeproject.converters.RecipeCommandToRecipe;
+import kkalinowski.springframework.recipeproject.converters.RecipeToRecipeCommand;
 import kkalinowski.springframework.recipeproject.domain.Recipe;
 import kkalinowski.springframework.recipeproject.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,17 +18,22 @@ import static org.mockito.Mockito.*;
 
 class RecipeServiceImplTest {
 
+    RecipeServiceImpl recipeService;
+
     @Mock
     RecipeRepository recipeRepository;
 
     @Mock
-    RecipeService recipeService;
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
