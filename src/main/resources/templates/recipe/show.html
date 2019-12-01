@@ -91,7 +91,7 @@
                             <ul th:each="ingredient : ${recipe.ingredients}">
                                 <li th:remove="all">1 Cup of milk</li>
                                 <li th:remove="all">1 Teaspoon of Chocolate</li>
-                                <li th:text="${ingredient.amount}+' '+${ingredient.uom.description}+' - '+${ingredient.desctiption}">1 Teaspoon of Sugar</li>
+                                <li th:text="${ingredient.amount}+' '+${ingredient.uom.description}+' - '+${ingredient.description}">1 Teaspoon of Sugar</li>
                             </ul>
                         </div>
                     </div>
