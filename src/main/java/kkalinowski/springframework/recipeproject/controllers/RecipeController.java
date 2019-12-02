@@ -52,7 +52,7 @@ public class RecipeController {
     }
 
     @GetMapping
-    @RequestMapping("recipe/{id}/delete")
+    @RequestMapping("/recipe/{id}/delete")
     public String deleteById(@PathVariable String id){
         recipeService.deleteById(Long.parseLong(id));
 
