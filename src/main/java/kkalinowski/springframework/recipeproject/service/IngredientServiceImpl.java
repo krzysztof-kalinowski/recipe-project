@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Created by Krzysztof Kalinowski on 03/12/2019.
@@ -113,4 +114,35 @@ public class IngredientServiceImpl implements IngredientService {
         }
 
     }
+
+    @Override
+    public void deleteById(Long recipeId, Long ingredientId) {
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
+
+        if(optionalRecipe.isPresent()){
+            Recipe recipe = optionalRecipe.get();
+            Optional<Ingredient> optionalIngredient = recipe.getIngredients()
+                    .stream()
+                    .filter(ingredient -> ingredient.getId().equals(ingredientId))
+                    .findFirst();
+            if(optionalIngredient.isPresent()){
+                log.debug("deleting Ingredient with id: "+ingredientId+" in Recipe id: "+recipeId);
+
+                Ingredient ingredient = optionalIngredient.get();
+                ingredient.setRecipe(null);
+                recipe.getIngredients().remove(ingredient);
+
+                recipeRepository.save(recipe);
+
+            } else {
+                log.debug("Ingredient with id: "+ingredientId+" in Recipe id: "+recipeId+" not found!");
+            }
+        } else {
+            log.debug("Recipe id: "+recipeId+" not found");
+        }
+
+
+
+    }
+
 }
