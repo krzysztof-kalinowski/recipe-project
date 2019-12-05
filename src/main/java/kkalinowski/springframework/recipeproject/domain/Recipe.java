@@ -1,6 +1,7 @@
 package kkalinowski.springframework.recipeproject.domain;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,7 +10,8 @@ import java.util.Set;
 /**
  * Created by Krzysztof Kalinowski on 18/11/2019.
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class Recipe {
 

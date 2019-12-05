@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 /**
  * Created by Krzysztof Kalinowski on 05/12/2019.
  */
@@ -34,7 +36,7 @@ public class ImageController {
     }
 
     @PostMapping("/recipe/{id}/image")
-    public String handleImagePost (@PathVariable String id, @RequestParam("imagefile") MultipartFile file){
+    public String handleImagePost (@PathVariable String id, @RequestParam("imagefile") MultipartFile file) {
 
         imageService.saveImageFile(Long.parseLong(id), file);
 
