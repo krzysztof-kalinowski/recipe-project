@@ -49,8 +49,7 @@ class RecipeControllerTest {
     }
 
     @Test
-    void testGetRecipeNotFound() throws Exception {
-
+    void testGetRecipeNotFoundTest() throws Exception {
         when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
 
         mockMvc.perform(get("/recipe/show/1"))
