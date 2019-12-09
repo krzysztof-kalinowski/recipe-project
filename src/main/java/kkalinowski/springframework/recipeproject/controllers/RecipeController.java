@@ -1,6 +1,7 @@
 package kkalinowski.springframework.recipeproject.controllers;
 
 import kkalinowski.springframework.recipeproject.commands.RecipeCommand;
+import kkalinowski.springframework.recipeproject.exceptions.NotANumberException;
 import kkalinowski.springframework.recipeproject.exceptions.NotFoundException;
 import kkalinowski.springframework.recipeproject.service.RecipeService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +28,14 @@ public class RecipeController {
 
     @GetMapping("/recipe/{id}/show")
     public String showById(@PathVariable String id, Model model) {
+        checkForNaN(id);
+
         model.addAttribute("recipe", recipeService.findById(Long.parseLong(id)));
 
         return "recipe/show";
     }
+
+
 
     @GetMapping("/recipe/new")
     public String newRecipe(Model model){
@@ -41,6 +46,8 @@ public class RecipeController {
 
     @GetMapping("/recipe/{id}/update")
     public String updateRecipe(@PathVariable String id, Model model){
+        checkForNaN(id);
+
         model.addAttribute("recipe", recipeService.findCommandById(Long.parseLong(id)));
 
         return "recipe/recipeform";
@@ -55,6 +62,8 @@ public class RecipeController {
 
     @GetMapping("/recipe/{id}/delete")
     public String deleteById(@PathVariable String id){
+        checkForNaN(id);
+
         recipeService.deleteById(Long.parseLong(id));
 
         return "redirect:/";
@@ -68,6 +77,27 @@ public class RecipeController {
         modelAndView.addObject("exception", exception);
 
         return modelAndView;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NotANumberException.class)
+    public ModelAndView handleNotANumber(Exception exception){
+        log.error("Handling not a number exception message: "+exception.getMessage());
+        ModelAndView modelAndView = new ModelAndView("404error");
+        modelAndView.addObject("exception", exception);
+
+        return modelAndView;
+    }
+
+    private void checkForNaN(String str) {
+        if (str == null) {
+            throw new NotANumberException("NotANumberException - Bad input String - is Empty");
+        }
+        try {
+            Long.parseLong(str);
+        } catch (NumberFormatException e) {
+            throw new NotANumberException("NotANumberException - Bad input String: "+str);
+        }
     }
 
 }

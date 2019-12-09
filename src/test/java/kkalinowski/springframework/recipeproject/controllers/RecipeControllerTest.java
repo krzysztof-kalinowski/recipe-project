@@ -2,6 +2,7 @@ package kkalinowski.springframework.recipeproject.controllers;
 
 import kkalinowski.springframework.recipeproject.commands.RecipeCommand;
 import kkalinowski.springframework.recipeproject.domain.Recipe;
+import kkalinowski.springframework.recipeproject.exceptions.NotANumberException;
 import kkalinowski.springframework.recipeproject.exceptions.NotFoundException;
 import kkalinowski.springframework.recipeproject.service.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,11 +50,21 @@ class RecipeControllerTest {
     }
 
     @Test
-    void testGetRecipeNotFoundTest() throws Exception {
+    void getRecipeNotFound() throws Exception {
         when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
 
-        mockMvc.perform(get("/recipe/show/1"))
-                .andExpect(status().isNotFound());
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404error"));
+    }
+
+    @Test
+    void handleNotANumber() throws Exception {
+        when(recipeService.findById(anyLong())).thenThrow(NotANumberException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("404error"));
     }
 
     @Test
