@@ -2,7 +2,6 @@ package kkalinowski.springframework.recipeproject.controllers;
 
 import kkalinowski.springframework.recipeproject.commands.RecipeCommand;
 import kkalinowski.springframework.recipeproject.domain.Recipe;
-import kkalinowski.springframework.recipeproject.exceptions.NotANumberException;
 import kkalinowski.springframework.recipeproject.exceptions.NotFoundException;
 import kkalinowski.springframework.recipeproject.service.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +32,9 @@ class RecipeControllerTest {
         MockitoAnnotations.initMocks(this);
 
         controller = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test
@@ -59,10 +60,8 @@ class RecipeControllerTest {
     }
 
     @Test
-    void handleNotANumber() throws Exception {
-        when(recipeService.findById(anyLong())).thenThrow(NotANumberException.class);
-
-        mockMvc.perform(get("/recipe/1/show"))
+    void handleNumberFormatException() throws Exception {
+        mockMvc.perform(get("/recipe/abc/show"))
                 .andExpect(status().isBadRequest())
                 .andExpect(view().name("400error"));
     }

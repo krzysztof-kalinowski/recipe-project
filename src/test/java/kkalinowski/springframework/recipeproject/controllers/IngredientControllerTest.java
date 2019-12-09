@@ -42,7 +42,9 @@ class IngredientControllerTest {
     void setUp() {
         MockitoAnnotations.initMocks(this);
         controller = new IngredientController(recipeService, unitOfMeasureService, ingredientService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test
@@ -149,6 +151,13 @@ class IngredientControllerTest {
 
         verify(ingredientService, times(1)).deleteById(anyLong(), anyLong());
 
+    }
+
+    @Test
+    void handleNumberFormatException() throws Exception {
+        mockMvc.perform(get("/recipe/abc/ingredient/def/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
     }
 
 }
