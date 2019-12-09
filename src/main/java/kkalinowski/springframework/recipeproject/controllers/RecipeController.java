@@ -72,7 +72,7 @@ public class RecipeController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ModelAndView handleNotFound(Exception exception){
-        log.error("Handling not found exception message: "+exception.getMessage());
+        log.error("Handling not found exception; message: "+exception.getMessage());
         ModelAndView modelAndView = new ModelAndView("404error");
         modelAndView.addObject("exception", exception);
 
@@ -82,8 +82,8 @@ public class RecipeController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(NotANumberException.class)
     public ModelAndView handleNotANumber(Exception exception){
-        log.error("Handling not a number exception message: "+exception.getMessage());
-        ModelAndView modelAndView = new ModelAndView("404error");
+        log.error("Handling number format exception; message: "+exception.getMessage());
+        ModelAndView modelAndView = new ModelAndView("400error");
         modelAndView.addObject("exception", exception);
 
         return modelAndView;
@@ -91,12 +91,12 @@ public class RecipeController {
 
     private void checkForNaN(String str) {
         if (str == null) {
-            throw new NotANumberException("NotANumberException - Bad input String - is Empty");
+            throw new NotANumberException("NotANumberException - Bad input String - is Empty - should be a Number");
         }
         try {
             Long.parseLong(str);
         } catch (NumberFormatException e) {
-            throw new NotANumberException("NotANumberException - Bad input String: "+str);
+            throw new NotANumberException("NotANumberException - Bad input String: "+str+" - should be a Number");
         }
     }
 
